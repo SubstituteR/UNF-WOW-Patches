@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Discord">
+      <UniqueIdentifier>{bdc9a52b-160a-4d99-adb0-fc3d31fb12b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules">
+      <UniqueIdentifier>{cdc2c7da-c43e-4af4-9712-8f73cb5672da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\string patch">
+      <UniqueIdentifier>{fd616cf5-e137-4679-92b9-e8e804fb3912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Version Bootstrap">
+      <UniqueIdentifier>{f8c89b72-e188-4650-aa15-3336a8e401a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\login patch">
+      <UniqueIdentifier>{c53e311a-c2ac-457a-8299-90e0167fb85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\discord patch">
+      <UniqueIdentifier>{b9a62003-fb1f-4c22-858b-06f052d4ab23}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="discord.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\string patch\stringpatch.h">
+      <Filter>Source Files\Modules\string patch</Filter>
+    </ClInclude>
+    <ClInclude Include="hookableFunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\patches.h">
+      <Filter>Source Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="wowFunctions.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wowject.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Source Files\Version Bootstrap</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\login patch\loginpatch.h">
+      <Filter>Source Files\Modules\login patch</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\discord patch\discordpatch.h">
+      <Filter>Source Files\Modules\discord patch</Filter>
+    </ClInclude>
+    <ClInclude Include="picosha2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\achievement_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\activity_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\application_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\core.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\image_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\lobby_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\network_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\overlay_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\relationship_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\storage_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\store_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\types.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\user_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="include\discord\voice_manager.cpp">
+      <Filter>Source Files\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\string patch\stringpatch.cpp">
+      <Filter>Source Files\Modules\string patch</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\patches.cpp">
+      <Filter>Source Files\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\login patch\loginpatch.cpp">
+      <Filter>Source Files\Modules\login patch</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\discord patch\discordpatch.cpp">
+      <Filter>Source Files\Modules\discord patch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="version.def">
+      <Filter>Source Files\Version Bootstrap</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="version_asm.asm">
+      <Filter>Source Files\Version Bootstrap</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>
