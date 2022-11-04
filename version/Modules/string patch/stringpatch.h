@@ -13,11 +13,11 @@ public:
     }
 };
 
-HOOKABLE(loadString_t, const char*, const char*, int, int)
+inline hookable<const char* (const char*, int, int)> loadString((void*)0x419D40);
+
 class stringPatch : public IPatch
 {
 public:
-    static loadString_t loadString;
     static std::map<const char*, const char*, mapComp> stringOverrides;
     bool load();
     bool unload();

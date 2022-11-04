@@ -2,31 +2,31 @@
 #include "loginpatch.h"
 #include <detours.h>
 #include <fstream>
-#include "../wowFunctions.h"
-
 #include "json.hpp"
+#include "../../wow.h"
+
 using json = nlohmann::json;
 
 bool loginPatch::isAuthenticating = false;
 char loginPatch::username[16] = { 0 };
 char loginPatch::password[16] = { 0 };
 
-processVariable<int> loginReady;
-processVariable<char> loginStep;
+int* loginReady;
+char* loginStep;
 
 bool loginPatch::load()
 {
-    loginReady = processVariable<int>(NULL, 0x76B474);
-    loginStep = processVariable<char>(NULL, 0x76AA38);
+    loginReady = (int*)0x76B474;
+    loginStep = (char*)0x76AA38;
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
-    DetourAttach(&WOW::Auth::Login, callback);
-    DetourAttach(&WOW::Auth::LoginCallbacks, authCallback);
+    DetourAttach(WOW::Auth::Login.get(), callback);
+    DetourAttach(WOW::Auth::LoginTick.get(), authCallback);
     DetourTransactionCommit();
 
     std::thread autoLogin([]() {
-        char username[16] = "";
-        char password[16] = "";
+        char username[17] = "";
+        char password[17] = "";
         try {
             nlohmann::json config;
             std::ifstream file("login.txt", std::ios::in);
@@ -57,8 +57,8 @@ bool loginPatch::unload()
 {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
-    DetourDetach(&WOW::Auth::Login, callback);
-    DetourDetach(&WOW::Auth::LoginCallbacks, authCallback);
+    DetourDetach(WOW::Auth::Login.get(), callback);
+    DetourDetach(WOW::Auth::LoginTick.get(), authCallback);
     DetourTransactionCommit();
     printf("Login Patch Removed!\n");
     return true;
@@ -99,5 +99,5 @@ void loginPatch::authCallback()
             break;
         }
     }
-    WOW::Auth::LoginCallbacks.original();
+    WOW::Auth::LoginTick.original();
 }

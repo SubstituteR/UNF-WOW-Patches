@@ -181,8 +181,8 @@
     <ClInclude Include="Modules\string patch\stringpatch.h" />
     <ClInclude Include="discord.h" />
     <ClInclude Include="picosha2.h" />
-    <ClInclude Include="singleton.h" />
     <ClInclude Include="version.h" />
+    <ClInclude Include="wow.h" />
     <ClInclude Include="wowFunctions.h" />
     <ClInclude Include="wowject.h" />
   </ItemGroup>

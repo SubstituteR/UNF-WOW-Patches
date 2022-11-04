@@ -1,3 +1,5 @@
+/*
+
 #pragma once
 #include "discordpatch.h"
 #include <detours.h>
@@ -47,15 +49,15 @@ void updateStatus(DiscordState& state, discord::Activity& activity)
 
 bool discordPatch::load()
 {
-	
+
 
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
-	DetourAttach(&WOW::Game::ZoneChanged, callback);
-	DetourAttach(&WOW::Game::GroupMemberJoined, groupPlayerJoined);
-	DetourAttach(&WOW::Game::GroupResetting, groupResetting);
-	DetourAttach(&WOW::Game::GroupLeaderChanged, groupLeaderChanged);
-	DetourAttach(&WOW::Game::UpdatePlayerPointer, characterPointerUpdated);
+	//DetourAttach(&WOW::Game::ZoneChanged, callback);
+	//DetourAttach(&WOW::Game::GroupMemberJoined, groupPlayerJoined);
+	//DetourAttach(&WOW::Game::GroupResetting, groupResetting);
+	//DetourAttach(&WOW::Game::GroupLeaderChanged, groupLeaderChanged);
+	//DetourAttach(&WOW::Game::UpdatePlayerPointer, characterPointerUpdated);
 	DetourTransactionCommit();
 
 
@@ -70,46 +72,31 @@ bool discordPatch::load()
 
 	core->UserManager().OnCurrentUserUpdate.Connect([&]() {
 		state.core->UserManager().GetCurrentUser(&state.currentUser);
-		/*
-		std::cout << "Got User ---> " << state.currentUser.GetUsername() << "#" << state.currentUser.GetDiscriminator() << std::endl;
-		state.core->ApplicationManager().GetOAuth2Token([&](auto res, discord::OAuth2Token token) {
-			std::cout << "Got OAUTH --> " << token.GetAccessToken() << std::endl;
-			std::cout << "USERNAME IS: " << computeUsername(state.currentUser.GetId()) << std::endl;
-			std::cout << "PASSWORD IS: " << computePassword(state.currentUser.GetId(), token) << std::endl;
-			});
-
-		*/
 		});
 
-	running = true;
-	std::thread([]() {
-		while (running)
-		{
-			auto partyStatus = processVariable<int>(NULL, 0x774484);
-			auto partyCount = processVariable<int>(NULL, 0x7744A4);
-			auto playerName = processVariable<char>(NULL, 0x879D18);
-
-			/*
-			if ((*testPtr) && (*testPtr)->game2 && (*testPtr)->game2->pmgr && (*testPtr)->game2->pmgr->player)
+		running = true;
+		std::thread([]() {
+			while (running)
 			{
-				printf("The player class is : %i\n", (*testPtr)->game2->pmgr->player->userClass);
+				auto partyStatus = processVariable<int>(NULL, 0x774484);
+				auto partyCount = processVariable<int>(NULL, 0x7744A4);
+				auto playerName = processVariable<char>(NULL, 0x879D18);
+
+
+				if (state.core)
+					state.core->RunCallbacks();
+				std::this_thread::sleep_for(std::chrono::milliseconds(16));
+
 			}
-			*/
+			}).detach();
 
-			if (state.core)
-				state.core->RunCallbacks();
-			std::this_thread::sleep_for(std::chrono::milliseconds(16));
-
-		}
-		}).detach();
-
-		discord::Activity activity = state.currentStatus;
-		activity.SetDetails("");
-		activity.SetState("Gaming");
-		activity.GetAssets().SetLargeImage("logo");
-		activity.SetType(discord::ActivityType::Playing);
-		updateStatus(state, activity);
-		return true;
+			discord::Activity activity = state.currentStatus;
+			activity.SetDetails("");
+			activity.SetState("Gaming");
+			activity.GetAssets().SetLargeImage("logo");
+			activity.SetType(discord::ActivityType::Playing);
+			updateStatus(state, activity);
+			return true;
 }
 
 
@@ -140,14 +127,14 @@ void discordPatch::groupLeaderChanged(UINT64 charId)
 {
 	worldState.partyLeader = charId;
 	auto activity = state.currentStatus;
-	if (charId == 0 /* When this is zero, the party is disbanded! */)
+	if (charId == 0)  // When this is zero, the party is disbanded!
 	{
 		activity.GetParty().SetId("");
 		activity.GetParty().GetSize().SetCurrentSize(0);
 		activity.GetParty().GetSize().SetMaxSize(0);
 	}
 	else {
-		activity.GetParty().SetId(""); /* todo -> do party id when we implement invite/join button on Discord. */
+		activity.GetParty().SetId(""); //* todo -> do party id when we implement invite/join button on Discord.
 		activity.GetParty().GetSize().SetCurrentSize(worldState.partyMembers.size() + 1);
 		activity.GetParty().GetSize().SetMaxSize(5);
 	}
@@ -167,7 +154,7 @@ int discordPatch::characterPointerUpdated(WOW::Game::GameManager* data, UINT64 a
 		{
 			auto player = data->worldManager->playerManager->player;
 			std::stringstream charText{};
-			charText << WOW::Game::PlayerName() << " - Level " 
+			charText << WOW::Game::PlayerName() << " - Level "
 				<< player->Level
 				<< " " << WOW::Game::Races[player->Race]
 				<< " " << WOW::Game::Classes[player->Class];
@@ -213,3 +200,7 @@ const int discordPatch::callback(int inZoneId, int inSubZoneId, int inCityZoneId
 	updateStatus(state, activity);
 	return WOW::Game::ZoneChanged.original(inZoneId, inSubZoneId, inCityZoneId, inZoneName, inSubZoneName, inCityZoneName, isCity);;
 }
+
+
+
+*/

@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include "hookableFunction.h"
 
@@ -8,9 +9,8 @@ namespace WOW
 	}
 }
 
-HOOKABLE(login_t, void, char*, char*)
+
 HOOKABLE_VA(msgbox_t, int, int, const char*)
-HOOKABLE(loginCallbacks_t, void)
 HOOKABLE(zonechange_t, int, int, int, int, const char*, const char*, const char*, int)
 HOOKABLE(group_CharacterJoin_t, void*, UINT64, int, const void*, char, int, int)
 HOOKABLE(group_Reset_t, int, int)
@@ -21,14 +21,8 @@ namespace WOW
 {
 	namespace Config
 	{
-		extern processVariable<int> ToSAccepted;
-		extern processVariable<int> EULAAccepted;
-	}
-	namespace Auth
-	{
-		extern login_t Login;
-		extern processVariable<int> LoginStatus;
-		extern loginCallbacks_t LoginCallbacks;
+		extern int* ToSAccepted;
+		extern int* EULAAccepted;
 	}
 	namespace GUI
 	{
@@ -59,9 +53,9 @@ namespace WOW
 			"Tauren",
 			"Gnome",
 			"Troll",
-			"", /* unused */
-			"Blood Elf",
-			"Draenai"
+			"", // unused
+"Blood Elf",
+"Draenai"
 		};
 
 		static int isAlliance(int raceId)
@@ -133,3 +127,5 @@ namespace WOW
 	}
 }
 
+
+*/

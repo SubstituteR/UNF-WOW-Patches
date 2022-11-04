@@ -9,17 +9,6 @@
 #include "Modules/patches.h"
 #include "Modules/discord patch/discordpatch.h"
 
-
-void scratch()
-{
-    std::shared_ptr<int> a = std::make_shared<int>(new int(5));
-    *a.get() = 10;
-
-    std::weak_ptr<int> b;
-    std::shared_ptr<int> c((int*)0xdeadbeef);
-    b = a;
-}
-
 void showConsole()
 {
     AllocConsole();
@@ -41,6 +30,7 @@ void showConsole()
                 }
                 if (input.compare("party") == 0)
                 {
+                    /*
                     if (discordPatch::worldState.partyMembers.size() == 0)
                         printf("Player is not in a party.\n");
                     else {
@@ -50,6 +40,7 @@ void showConsole()
                             printf("party has member: %i\n", player);
                         }
                     }
+                    */
                 }
             }
         });

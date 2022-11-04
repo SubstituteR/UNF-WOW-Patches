@@ -1,3 +1,5 @@
+/*
+
 #pragma once
 #include <map>
 #include <set>
@@ -6,8 +8,6 @@
 #include "discord/discord.h"
 #include "../hookableFunction.h"
 #include "../../wowFunctions.h"
-
-HOOKABLE(loadString_t, const char*, const char*, int, int)
 
 struct DiscordState {
     discord::User currentUser;
@@ -52,3 +52,5 @@ public:
 
     static DWORD SignalEvent(int eventId, char* args, ...);
 };
+
+*/

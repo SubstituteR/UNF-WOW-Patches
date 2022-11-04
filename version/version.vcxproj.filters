@@ -42,9 +42,6 @@
     <ClInclude Include="hookableFunction.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\patches.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
@@ -65,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="picosha2.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wow.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,15 +1,12 @@
 #pragma once
 #include "stringpatch.h"
 #include <detours.h>
-#include "../wowFunctions.h"
 
-loadString_t stringPatch::loadString;
 bool stringPatch::load()
 {
-    loadString = loadString_t(NULL, 0x419D40);
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
-    DetourAttach(&loadString, callback);
+    DetourAttach(loadString.get(), callback);
     DetourTransactionCommit();
     printf("This is where our patch is applied!\n");
     return true;
@@ -18,7 +15,7 @@ bool stringPatch::load()
 bool stringPatch::unload() {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
-    DetourDetach(&loadString, callback);
+    DetourDetach(loadString.get(), callback);
     DetourTransactionCommit();
     printf("This is where our patch is removed!\n");
     return true;
