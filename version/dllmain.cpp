@@ -3,7 +3,22 @@
 #include "hookableFunction.h"
 #include "wowFunctions.h"
 #include "wowject.h"
-#include "detours.h"
+#include <string>
+#include <thread>
+#include <iostream>
+#include "Modules/patches.h"
+#include "Modules/discord patch/discordpatch.h"
+
+
+void scratch()
+{
+    std::shared_ptr<int> a = std::make_shared<int>(new int(5));
+    *a.get() = 10;
+
+    std::weak_ptr<int> b;
+    std::shared_ptr<int> c((int*)0xdeadbeef);
+    b = a;
+}
 
 void showConsole()
 {
