@@ -1,13 +1,14 @@
 #pragma once
 #include "stringpatch.h"
 #include <detours.h>
+hookable<const char* (const char*, int, int)> loadString(TEXT("wow.exe"), 0x419D40);
 
 bool stringPatch::load()
 {
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     DetourAttach(loadString.get(), callback);
-    DetourTransactionCommit();
+    printf("result of commit is %d\n", DetourTransactionCommit());
     printf("This is where our patch is applied!\n");
     return true;
 }

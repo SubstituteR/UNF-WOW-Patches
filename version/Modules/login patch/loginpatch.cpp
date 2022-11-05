@@ -11,13 +11,11 @@ bool loginPatch::isAuthenticating = false;
 char loginPatch::username[16] = { 0 };
 char loginPatch::password[16] = { 0 };
 
-int* loginReady;
-char* loginStep;
+extern_ptr<int> loginReady(TEXT("wow.exe"), 0x76B474);
+extern_ptr<char> loginStep(TEXT("wow.exe"), 0x76AA38);
 
 bool loginPatch::load()
 {
-    loginReady = (int*)0x76B474;
-    loginStep = (char*)0x76AA38;
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     DetourAttach(WOW::Auth::Login.get(), callback);

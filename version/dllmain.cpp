@@ -47,6 +47,7 @@ void showConsole()
     consoleThread.detach();
 }
 
+
 BOOL WINAPI InitHook()
 {
 

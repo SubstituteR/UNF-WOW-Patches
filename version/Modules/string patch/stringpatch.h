@@ -13,7 +13,6 @@ public:
     }
 };
 
-inline hookable<const char* (const char*, int, int)> loadString((void*)0x419D40);
 
 class stringPatch : public IPatch
 {
